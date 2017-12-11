@@ -44,7 +44,7 @@ public class App {
 		// Create a new array based on user preference.
 		ArrayList<EnhancedImage> newClothes = new ArrayList<EnhancedImage>();
 		for (EnhancedImage image : clothes) {
-			if (image.getKey().equals(user.getKey())) {
+			if (image.getKey().contains(user.getKey())) {
 				newClothes.add(image);
 			}
 		}
@@ -52,6 +52,46 @@ public class App {
 			System.out.println(image.toString());
 		}
 		
+		for (int i = 0; i < newClothes.size(); i++) {
+			JFrame frame = new JFrame();
+			ImageIcon icon = new ImageIcon(newClothes.get(i).getSource());
+			JLabel label = new JLabel(icon);
+			frame.add(label);
+			frame.pack();
+			frame.setVisible(true);
+		}
+		
+		// User chooses which item they want to base their outfit around
+		System.out.println("Pick the number of the item that you would like to base your outfit off (1- " + newClothes.size() + "): ");
+		int numChoice = sc.nextInt();
+		while (numChoice > newClothes.size()) {
+			System.out.println("Sorry, please enter a number between 1 and " + newClothes.size());
+			numChoice = sc.nextInt();
+		}
+		EnhancedImage choice = newClothes.get(numChoice - 1);
+		System.out.println(choice.toString());
+		ArrayList<String> matching = choice.getMatch();
+		for (String match : matching) {
+			System.out.println(match);
+		}
+		
+		// Create an array for the matches and display the matches
+		choice.getMatchKey();
+		ArrayList<String> matches = choice.getMatch();
+		for (int i = 0; i < matches.size(); i++) {
+			for (int j = 0; j < clothes.size(); j++) {
+				if (clothes.get(j).getKey().equals(matches.get(i))) {
+					JFrame frame = new JFrame();
+					ImageIcon icon = new ImageIcon(clothes.get(i).getSource());
+					JLabel label = new JLabel(icon);
+					frame.add(label);
+					frame.pack();
+					frame.setVisible(true);
+				}
+			}
+		}
+		System.out.println("Displaying matches...");
+		sc.close();
 	}
 	
 	public static ArrayList<EnhancedImage> initClothes() {
