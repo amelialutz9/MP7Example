@@ -19,12 +19,6 @@ public class App {
 		// Prompt for user information and creates the user.
 		System.out.print("What is your name? ");
 		String name = sc.next();
-		System.out.print("Enter 'M' for men's clothes or 'W' for women's clothes: ");
-		String gender = sc.next();
-		while (!gender.equalsIgnoreCase("m") && !gender.equalsIgnoreCase("w")) {
-			System.out.print("Sorry, please enter 'M' for men's clothes or 'W' for women's clothes: ");
-			gender = sc.next();
-		}
 		System.out.print("Enter 'F' for formal clothes or 'I' for informal clothes: ");
 		String atmosphere = sc.next();
 		while (!atmosphere.equalsIgnoreCase("f") && !atmosphere.equalsIgnoreCase("i")) {
@@ -37,7 +31,7 @@ public class App {
 			System.out.println("Sorry, please enter 'U' for upper section (tops) or 'L' for lower section (pants): ");
 			section = sc.next();
 		}
-		String key = gender + atmosphere + section;
+		String key = "M" + atmosphere + section;
 		Human user = new Human(name, key.toUpperCase());
 		//System.out.println(user.toString());
 		
@@ -62,36 +56,38 @@ public class App {
 		}
 		
 		// User chooses which item they want to base their outfit around
-		System.out.println("Pick the number of the item that you would like to base your outfit off (1- " + newClothes.size() + "): ");
+		System.out.println("Close all windows then pick the number of the item that you would like to base your outfit off (1- " + newClothes.size() + "): ");
 		int numChoice = sc.nextInt();
 		while (numChoice > newClothes.size()) {
 			System.out.println("Sorry, please enter a number between 1 and " + newClothes.size());
 			numChoice = sc.nextInt();
 		}
+
+		// Create an array for the matches and display the matches
 		EnhancedImage choice = newClothes.get(numChoice - 1);
 		System.out.println(choice.toString());
-		ArrayList<String> matching = choice.getMatch();
-		for (String match : matching) {
-			System.out.println(match);
-		}
-		
-		// Create an array for the matches and display the matches
 		choice.getMatchKey();
 		ArrayList<String> matches = choice.getMatch();
+		for (String match : matches) {
+			System.out.println(match);
+		}
 		for (int i = 0; i < matches.size(); i++) {
 			for (int j = 0; j < clothes.size(); j++) {
 				if (clothes.get(j).getKey().equals(matches.get(i))) {
 					JFrame frame = new JFrame();
-					ImageIcon icon = new ImageIcon(clothes.get(i).getSource());
+					ImageIcon icon = new ImageIcon(clothes.get(j).getSource());
 					JLabel label = new JLabel(icon);
 					frame.add(label);
 					frame.pack();
 					frame.setVisible(true);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 			}
 		}
 		System.out.println("Displaying matches...");
+		System.out.println("Close windows to exit app");
 		sc.close();
+		return;
 	}
 	
 	public static ArrayList<EnhancedImage> initClothes() {
@@ -112,6 +108,16 @@ public class App {
 		EnhancedImage top13 = new EnhancedImage("M", "I", "U", "S", "C", "resources/top13.jpg");
 		EnhancedImage top14 = new EnhancedImage("M", "I", "U", "T", "W", "resources/top14.jpg");
 		EnhancedImage top15 = new EnhancedImage("M", "I", "U", "T", "C", "resources/top15.jpg");
+		EnhancedImage top16 = new EnhancedImage("M", "I", "U", "T", "G", "resources/top16.jpg");
+		EnhancedImage top17 = new EnhancedImage("M", "I", "U", "T", "Y", "resources/top17.jpg");
+		EnhancedImage top18 = new EnhancedImage("M", "I", "U", "T", "R", "resources/top18.jpg");
+		EnhancedImage top19 = new EnhancedImage("M", "F", "U", "T", "G", "resources/top19.jpg");
+		EnhancedImage top20 = new EnhancedImage("M", "F", "U", "T", "C", "resources/top20.jpg");
+		EnhancedImage top21 = new EnhancedImage("M", "F", "U", "T", "Y", "resources/top21.jpg");
+		EnhancedImage top22 = new EnhancedImage("M", "F", "U", "T", "R", "resources/top22.jpg");
+		EnhancedImage top23 = new EnhancedImage("M", "F", "U", "T", "B", "resources/top23.jpg");
+		EnhancedImage top24 = new EnhancedImage("M", "F", "U", "T", "E", "resources/top24.jpg");
+		EnhancedImage top25 = new EnhancedImage("M", "I", "U", "T", "E", "resources/top25.jpg");
 		images.add(top1);
 		images.add(top2);
 		images.add(top3);
@@ -127,6 +133,16 @@ public class App {
 		images.add(top13);
 		images.add(top14);
 		images.add(top15);
+		images.add(top16);
+		images.add(top17);
+		images.add(top18);
+		images.add(top19);
+		images.add(top20);
+		images.add(top21);
+		images.add(top22);
+		images.add(top23);
+		images.add(top24);
+		images.add(top25);
 		
 		// creates and adds bottoms
 		EnhancedImage pant1 = new EnhancedImage("M", "F", "L", "P", "Y", "resources/pant1.jpg");
