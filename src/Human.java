@@ -1,4 +1,8 @@
-
+/**
+ * The class to describe a user.
+ * @author amelialutz
+ *
+ */
 public class Human {
 	private String name;
 	private String key;

@@ -1,5 +1,9 @@
 import java.util.ArrayList;
-
+/**
+ * The class to store our images with information.
+ * @author amelialutz
+ *
+ */
 public class EnhancedImage {
 	/** The image url source. */
 	private String source;
@@ -9,9 +13,9 @@ public class EnhancedImage {
 	private String color;
 	/** The style of the item, for example: t-shirt, dress shirt, long pants, shorts, etc. */
 	private String style;
-	/**This finds recommendations*/
+	/** This finds recommendations. */
 	private ArrayList<String> match = new ArrayList<String>();
-	/**Array of Colors to simplify code*/
+	/** Array of Colors to simplify code. */
 	private String[] colors = {"B","E","R","G","C","Y"};
 	
 	/**
