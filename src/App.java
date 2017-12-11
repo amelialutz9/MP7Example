@@ -71,6 +71,14 @@ public class App {
 		for (String match : matches) {
 			System.out.println(match);
 		}
+		JFrame choiceFrame = new JFrame();
+		ImageIcon choiceIcon = new ImageIcon(choice.getSource());
+		JLabel choiceLabel = new JLabel(choiceIcon);
+		choiceFrame.add(choiceLabel);
+		choiceFrame.pack();
+		choiceFrame.setVisible(true);
+		choiceFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		for (int i = 0; i < matches.size(); i++) {
 			for (int j = 0; j < clothes.size(); j++) {
 				if (clothes.get(j).getKey().equals(matches.get(i))) {
